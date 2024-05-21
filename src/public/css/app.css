@@ -1,0 +1,475 @@
+.body{
+    background-color: gainsboro;
+}
+
+.header-page{
+    width: 100%;
+    display: flex;
+}
+.header-logo{
+    color: blue;
+    font-weight: bold;
+    font-size: 40px;
+}
+.header-list{
+    display: flex;
+    margin-top: 10px;
+    margin-left: auto;
+    border: 2px solid black;
+    height: 50px;
+    background-color: white;
+}
+.headerlink{
+    padding: 0px 40px ;
+    padding-bottom: 30px;
+    margin-right: 0%;
+    
+}
+.menu-button{
+    position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 50px;
+	height: 50px;
+	box-sizing: border-box;
+	background-color: blue;
+	transition: background-color 0.3s ease;
+    margin: 20px  10px ;
+}
+.menu-button::before {
+    position: absolute;
+	top: 35%;
+	left: 25%;
+	display: block;
+	content: "";
+	width: 50%;
+	height: 2px;
+	background: #f7f7f7;
+	transform: rotate(0deg);
+	transition: transform 0.3s ease, top 0.1s ease;
+}
+.menu-button::after {
+    position: absolute;
+	bottom: 35%;
+	left: 25%;
+	display: block;
+	content: "";
+	width: 50%;
+	height: 2px;
+	background: #f7f7f7;
+	transform: rotate(0deg);
+	transition: transform 0.3s ease, bottom 0.1s ease;
+}
+.menu-button:hover{
+    background-color: #555;
+}
+.menu-button.active::before {
+    top: calc(50% - 1px);
+	transform: rotate(315deg);
+}
+.menu-button.active::after{
+    bottom: calc(50% - 1px);
+	transform: rotate(-315deg);
+}
+
+/*register.blade.php*/
+.register{
+    position: relative;
+   
+}
+.register-form{
+    width: 300px;
+    max-width: 100%;
+    text-align: center;
+    background-color: whitesmoke;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    
+}
+
+
+.register-head{
+   background-color: blue;
+   padding: 10px 0;
+   font-weight: bold;
+   color: white;
+   width: 100%;
+   
+}
+.input-form{
+  padding: 10px;
+ 
+  display: flex;
+}
+.user-icon{
+    color: #000;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: 11px;
+  width: 14px;
+  height: 6px;
+  border-left: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+  border-top: solid 1px currentColor;
+  border-bottom: solid 1px transparent;
+  background-color: currentColor;
+  border-radius: 6px 6px 0 0;
+}
+.user-icon:before{
+    content: '';
+  position: absolute;
+  left: 2px;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: solid 1px currentColor;
+  background-color: currentColor;
+}
+
+
+.name{
+    width: 250px;
+    height: 40px;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+.mail-icon{
+    color: #000;
+    position: absolute;
+    margin-left: 8px;
+    margin-top: 4px;
+    width: 18px;
+    height: 10px;
+    border-radius: 1px;
+    border: solid 1px currentColor;
+    position: absolute;
+    left: 0%;
+  }
+  .mail-icon:before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: -4px;
+    width: 1px;
+    height: 10px;
+    background-color: currentColor;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+    -webkit-transform: rotate(-54deg);
+            transform: rotate(-54deg);
+  }
+  .mail-icon:after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: -4px;
+    width: 1px;
+    height: 10px;
+    background-color: currentColor;
+    -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+    -webkit-transform: rotate(54deg);
+            transform: rotate(54deg);
+  }
+
+
+.email{
+    width: 250px;
+    height: 40px;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+.password-icon{
+    color: #000;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: 10px;
+  width: 13px;
+  height: 6px;
+  border-radius: 1px;
+  border: solid 1px currentColor;
+  background-color: currentColor;
+}
+.password-icon:before{
+    content: '';
+  position: absolute;
+  left: 3px;
+  top: -8px;
+  width: 5px;
+  height: 6px;
+  border-radius: 4px 4px 0 0;
+  border-top: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+}
+
+
+.password{
+    width: 250px;
+    height: 40px;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+.button{
+   text-align: right;
+  margin-right: 4px;
+}
+
+/*共通*/
+.input-button{
+    background-color: blue;
+    color: white;
+    width: 90px;
+    height: 30px;
+     margin-left: auto;
+}
+
+.complete{
+    text-align: center;
+    background-color: white;
+    border: 2px solid black;
+    width: 40%;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.button-login{
+    text-align: center;
+}
+.input-button-login{
+    background-color: blue;
+    color: white;
+    width: 100px;
+    height: 40px;
+}
+/*login.blade.php*/
+.login{
+    position: relative;
+}
+.login-form{
+    width: 300px;
+    max-width: 100%;
+    text-align: center;
+    background-color: whitesmoke;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 15%;
+}
+.login-title{
+    width: 300px;
+    margin: 0 auto;
+}
+.login-head{
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+
+
+ /*detail.blade*/
+.detail-shop-class{
+    display: flex;
+  max-width: 100%;
+    
+}
+.detail-shop-introduction{
+    width: 45%;
+    margin-left: 5%;
+}
+.detail-place-category{
+    display: flex;
+}
+.shop-tag-detail{
+    padding: 0 5px;
+}
+.shop-introduction{
+   width: 100%;
+}
+
+
+.detail-form{
+    background-color: blue;
+    width: 45%;
+    height: 670px;
+    margin: 0 0 0 auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+   margin-right: 5%;
+   position: relative;
+   
+}
+.detail-form::before{
+    flex-shrink: 0;
+}
+
+
+.detail-header{
+    color: white;
+}
+.reservation-input-list{
+    margin: 10px 5px;
+}
+.date{
+    width: 40%;
+    height: 35px;
+}
+.detail-time{
+    width: 90%;
+    height: 35px;
+}
+.member-count{
+    width: 90%;
+    height: 35px;
+}
+.detail-confirm{
+    display: flex;
+    background-color: gainsboro;
+    padding: 10px 20px;
+    width: 87%;
+    margin-top: 10px;
+   
+}
+
+
+.reservation-shop-td{
+    padding-left: 50px;
+    
+}
+.submit-button{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   position: absolute;
+     bottom: 0;
+    
+}
+.submit{
+     width: 98%;
+     background-color: darkblue;
+     color: white;
+     height: 40px;
+    
+}
+
+/*index.blade.php*/
+.home{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    
+}
+.shop-form{
+    margin: 2%;
+    padding: 10px 10px;
+    width: 20%;
+    border: 2px solid black;
+    height: 380px;
+    background-color: white;
+}
+.shop-title{
+    width: 100%;
+    margin-bottom: 0%;
+}
+.place-category{
+    display: flex;
+
+}
+.shop-tag{
+    padding: 0 5px;
+}
+
+   
+.in-detail{
+    color: white;
+    background-color: blue;
+    margin-top: auto;
+}
+/*menu.blade.php*/
+.square_btn {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333; /* 枠の調整 */
+    background: blue; /* ボタンの背景色 */
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+   
+  .square_btn::before, .square_btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px; /* 棒の幅（太さ） */
+    height: 27px; /* 棒の高さ */
+    background: white; /* バツ印の色 */
+  }
+   
+  .square_btn::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+  }
+   
+  .square_btn::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
+  .menu{
+    display: flex;
+    width: 100%;
+  }
+  .menu-display{
+    margin-left: auto; 
+    margin-right: auto;
+       text-align: center;
+    font-size: larger;
+    margin-top: 8%;
+  }
+  .menu-content{
+    padding: 40px;
+  }
+  /*mypage.blade.php*/
+  .mypage-reserv-form{
+  
+   position: relative;
+  }
+  .detail-confirm-mypage{
+    background-color: blue;
+    width: 40%;
+    height: 300px;
+    margin: 0 0 0 auto;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+   margin-right: 5%;
+   position: relative;
+   margin-bottom: 20px;
+   
+  }
+  .reservation-th{
+    color: white;
+    padding: 15px;
+  }
+  .reservation-td{
+    padding-left: 50px;
+    color: white;
+  }
