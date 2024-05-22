@@ -5,7 +5,7 @@
 ##作成した目的
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい。
 
-##アプリケーションURL
+## アプリケーションURL
 localhost 店舗一覧ページ
 localhost/login ログイン画面
 localhost/register 会員登録画面
@@ -14,7 +14,7 @@ localhost/detail　店舗詳細ページ
 localhost/done  予約完了画面
 localhost/menu メニュー
 
-##機能一覧
+## 機能一覧
 ー　会員登録
 ー　ログイン
 ー　ログアウト
@@ -29,10 +29,10 @@ localhost/menu メニュー
 ー　blade
 ー　ＣＳＳ
 
-##テーブル設計
+## テーブル設計
 ![スクリーンショット 2024-05-22 195047](https://github.com/9136424556/rese/assets/151130944/b88f424c-4f05-481b-8dea-cf51ae23368d)　
-##ER図
+## ER図
 ![スクリーンショット 2024-05-22 195155](https://github.com/9136424556/rese/assets/151130944/d430afb5-701d-4e61-b365-e543f268a0b4)
 
-#環境構築
-docker 
+# 環境構築
+docker, Linux
