@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', 'file'), //sessionの保存方法
 
     /*
     |--------------------------------------------------------------------------
@@ -31,9 +31,9 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => env('SESSION_LIFETIME', 120), //sessionの有効期限、120分ー＞2時間
 
-    'expire_on_close' => false,
+    'expire_on_close' => false,  // 有効期限を「ブラウザのタブを閉じるまで」に設定
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'encrypt' => false,
+    'encrypt' => true,// Cookieの暗号化
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ return [
     |
     */
 
-    'files' => storage_path('framework/sessions'),
+    'files' => storage_path('framework/sessions'),  // （fileに保存する場合）保存先パス
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'connection' => env('SESSION_CONNECTION', null),
+    'connection' => env('SESSION_CONNECTION', null),  // （database,redisに保存する場合）接続先
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'table' => 'sessions',
+    'table' => 'sessions',  // (databaseに保存する場合）保存先テーブル
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE',false),
 
     /*
     |--------------------------------------------------------------------------

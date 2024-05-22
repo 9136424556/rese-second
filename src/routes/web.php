@@ -21,6 +21,7 @@ use App\Http\Controllers\ForgotPasswordLinkController;
 
 Route::get('/register',[RegisterController::class, 'create']);
 Route::post('/register',[RegisterController::class, 'storeuser'])->name('register');
+Route::get('/logout', [LogoutController::class, 'logout']);
 Route::post('/logout', [LogoutController::class, 'destroy'])->middleware('auth');
 Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store']);
 Route::post('/forgot-password/{token}', [ForgotPasswordController::class, 'reset']);
@@ -31,6 +32,8 @@ Route::get('/thanks',[RegisterController::class, 'thanks'])->name('thanks');
 
 Route::get('/login',[RegisterController::class, 'login'])->name('login');
 Route::post('/login',[RegisterController::class, 'loginuser'])->middleware('guest');
+
+
 
 Route::get('/',[ShopController::class, 'index'])->name('index');
 Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('detail.get');

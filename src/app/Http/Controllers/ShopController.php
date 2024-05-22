@@ -34,7 +34,8 @@ class ShopController extends Controller
     {
         
         $reserv = new Reservation();
-        $reserv->reservation_datetime.$reserv->reservation_datetime = $request->date.$request->time;
+        $reserv->reservation_date = $request->date; 
+        $reserv->reservation_time = $request->time;
         $reserv->number = $request->member;
         $reserv->shop_id = $request->shop_id;
         $reserv->user_id = $request->user_id;
@@ -56,11 +57,21 @@ class ShopController extends Controller
 
         return view('menu');
     }
+    public function search(Request $request)
+    {
+        
+        $todos = Shop::all();
+
+
+        
+        return view('header.list',compact('todos'));
+    }
 
    
     
     public function mypage()
     {
+        
         $shops = Reservation::orderby('id')->get();
         $users = Auth::user();
 
@@ -92,6 +103,6 @@ class ShopController extends Controller
         );
         session($data);
 
-        return view('detail', $data);
+        return view('detail', compact('data'));
    }
 }
