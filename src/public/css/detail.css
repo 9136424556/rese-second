@@ -1,0 +1,177 @@
+ /*detail.blade*/
+ .detail-shop-class{
+    display: flex;
+  max-width: 100%;
+    
+}
+.detail-shop-introduction{
+    width: 45%;
+    margin-left: 5%;
+}
+.detail-place-category{
+    display: flex;
+}
+.shop-tag-detail{
+    padding: 0 5px;
+}
+.shop-introduction{
+   width: 100%;
+}
+
+
+.detail-form{
+    background-color: blue;
+    width: 45%;
+    height: 670px;
+    margin: 0 0 0 auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+   margin-right: 5%;
+   position: relative;
+   
+}
+.detail-form::before{
+    flex-shrink: 0;
+}
+
+
+.detail-header{
+    color: white;
+}
+.reservation-input-list{
+    margin: 10px 5px;
+}
+.date{
+    width: 40%;
+    height: 35px;
+}
+.detail-time{
+    width: 90%;
+    height: 35px;
+}
+/*選択ボックス　大きさ*/
+.select_items{
+    width: 90%;
+    height: 35px;
+}
+.detail-confirm{
+    
+    background-color: gainsboro;
+    padding: 10px 20px;
+    width: 87%;
+    margin-top: 10px;
+   
+}
+
+
+.reservation-shop-td{
+    padding-left: 50px;
+    
+}
+.submit-button{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   position: absolute;
+     bottom: 0;
+    
+}
+.submit{
+     width: 98%;
+     background-color: darkblue;
+     color: white;
+     height: 40px;
+    
+}
+
+
+/*モーダルウィンドウ*/
+.modal-fade{
+    display: none;
+}
+.modal-header{
+   
+   
+}
+.modal1-close{
+    text-align: right;
+   
+}
+.close{
+     width: 50px;
+}
+.form-control{
+    width: 80%;
+    height: 150px;
+}
+.modal-fade:target{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-fade .modal-content{
+    width: 35rem;
+    height: 35rem;
+    position: relative;
+    padding: 1.5em;
+    background-color: white;
+}
+.modal-fade .close{
+    position: relative;
+    display: block;
+}
+.modal-fade .close::after{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    content: "x";
+}
+.modal-fade .close::before{
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+.modal-content{
+    position: relative;
+    padding: 1.5em;
+}
+
+
+
+
+/*幅が768px以下の場合の画面全体表示*/
+@media screen and (max-width: 768px) {
+    .detail-shop-class{
+        width: 100%;
+        display: contents;
+    }
+}
+
+/*幅が768px以下の場合の店舗情報欄の表示*/
+@media screen and (max-width: 768px) {
+    .detail-shop-introduction{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+/*幅が768px以下の場合の予約フォームの表示*/
+@media screen and (max-width: 768px) {
+    .detail-form{
+        width: 70%;
+        margin: 0 auto;
+        top: 0;
+    }
+}

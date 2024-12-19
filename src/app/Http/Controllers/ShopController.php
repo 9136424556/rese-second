@@ -3,106 +3,112 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Shop;
-use App\Models\Reservation;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
+use App\Models\Mark;
+use App\Models\Time;
+use App\Models\Number;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
     public function index()
     {
-        $shops = Shop::orderBy('id' )->get();  
-
-        return view('index', compact('shops'));
-    }
-     public function show($shop_id)
-    {
-      
-       $shops = Shop::find($shop_id);
-       
-      $users = Auth::id();
-       
-        return view('detail', compact('shops','users'));
-    }
-    public function create(Request $request)
-    {
-       
-        return view('done');
-    }
-    public function store(Request $request)
-    {
+        $shops = Shop::getShop(); 
+        session()->flash('fs_msg', null);
         
-        $reserv = new Reservation();
-        $reserv->reservation_date = $request->date; 
-        $reserv->reservation_time = $request->time;
-        $reserv->number = $request->member;
-        $reserv->shop_id = $request->shop_id;
-        $reserv->user_id = $request->user_id;
-       
-    
-        $reserv->save();
-     
-      
-        return redirect('/done');
-    }
-    public function done()
-    {
-        return view('done');
-    }
+        $areas = Area::all(); 
+        $genres = Genre::all();
 
-    public function menu()
-    {
-      
-
-        return view('menu');
+        return view('index', compact('shops','areas','genres'));
     }
+    public function show($shop_id, Request $request)
+    {
+       $shops = Shop::find($shop_id);
+       $users = Carbon::tomorrow()->format('Y-m-d');
+       $marks = Mark::orderBy('posted_on','desc')->where('shop_id', $shop_id)->get();
+
+       $times = Time::all();
+       $numbers = Number::all();
+
+       // 現在のユーザーがこの店舗にレビューを書いているかチェック
+         // ユーザーがログインしている場合のみ処理を続行
+         $hasReviewed = null; // 初期値を設定
+          if (Auth::check()) {
+              $user = Auth::user(); // 現在のユーザーを取得
+              $hasReviewed = Mark::where('user_id', $user->id)
+                          ->where('shop_id', $shop_id)
+                          ->first();
+          }
+
+        
+       return view('detail', compact('shops','users','times','numbers','marks','hasReviewed'));
+    }   
+
+    //左上メニューアイコン//
+     public function menu()
+    {
+        $user = Auth::user();
+        return view('menu', compact('user'));
+    }
+//検索機能
     public function search(Request $request)
     {
-        
-        $todos = Shop::all();
+        if($request->has('reset')) {
+            return redirect('/')->withInput();
+        }
 
+        $area_name = $request->input('area_id');
+        $genre_name = $request->input('genre_id');
+        $keyword = $request->input('keyword');
 
+        $searchResult = Shop::searchShops($area_name, $genre_name, $keyword);
+       
+        $shops = $searchResult['shops'];
+       
+        $areas = Area::all();
+        $genres = Genre::all();
         
-        return view('header.list',compact('todos'));
+       
+        return view('index', compact('shops','areas','genres'));
     }
 
-   
-    
-    public function mypage()
+    public function sort(Request $request)
     {
+        $sort = $request->query('sort', 'random');  // ソート条件 ('high', 'low', 'random')
+
         
-        $shops = Reservation::orderby('id')->get();
-        $users = Auth::user();
+        // ショップ一覧データを取得
+        $query = DB::table('shops')
+           ->leftJoin('marks', 'shops.id', '=', 'marks.shop_id')
+           ->leftJoin('areas', 'shops.area_id', '=', 'areas.id') // エリア情報を左結合
+           ->leftJoin('genres', 'shops.genre_id', '=', 'genres.id') // ジャンル情報を左結合
+           ->select(
+    'shops.id',
+             'shops.shop_name', 
+             'shops.image',
+             'areas.name as area_name', 
+             'genres.name as genre_name',
+           DB::raw('COALESCE(AVG(marks.evaluate), 0) as average_rating'), // 評価の平均値
+           DB::raw('COUNT(marks.id) as rating_count')  // 評価数
+       )
+       ->groupBy('shops.id', 'shops.shop_name');
 
-        return view('mypage',compact('shops','users'));
+       // ソート条件に応じて並び替え
+       if ($sort === 'high') {
+          $query->orderByDesc('average_rating');
+       } elseif ($sort === 'low') {
+          $query->orderBy('average_rating');
+       } elseif ($sort === 'random') {
+          $query->inRandomOrder();
+       }
+
+        // データ取得
+        $shops = $query->get();
+
+        return response()->json($shops);
     }
-    
-    public function userdataPage(Request $request): View
-    {
-        $date = $request->date;
-        $time = $request->time;
-        $member = $request->member;
-
-        $data = compact('date', 'time','member');
-        session($data);
-
-        return view('detail', $data);
-    }
-    public function confirmdataPage(Request $request): view
-   {
-        $session = $request->session()->all();
-        $date =$request->date;
-        $time = $request->time;
-        $member = $request->member;
-
-        $data = compact(
-            'date',
-            'time',
-            'member',
-        );
-        session($data);
-
-        return view('detail', compact('data'));
-   }
 }

@@ -9,6 +9,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
     protected $fillable = [
         'shop_id',
         'reservation_date',
@@ -17,13 +18,28 @@ class Reservation extends Model
         'user_id',
     ];
 
-    public function user()
+    public static function postReservation($request, $shop_id)
     {
-        return $this->belongsTo(User::class,'id');
+        $param = [
+            "shop_id" => $shop_id,
+            "reservation_date" => $request->date,
+            "reservation_time" => $request->time,
+            "number" => $request->number,
+            "user_id" => $request->user_id,
+        ];
+        $reservation = Reservation::create($param);
+        return $reservation;
     }
 
     public function shop()
     {
-        return $this->belongsTo(Shop::class,'id');
+        return $this->belongsTo(Shop::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    
 }

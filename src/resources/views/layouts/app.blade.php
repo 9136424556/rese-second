@@ -7,37 +7,22 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
-         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-        
-     
-        <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+        <!--javascript-->
+        <script src="{{ asset('js/app.js') }}"></script>
        
+        @yield('css')
     </head>
-    <body class="body">
-        
-        
-    
 
-            <!-- Page Heading -->
-           
-           
-    <header class="header-page">
+    <body class="body">
+     <header class="header-page">
         <a href="/menu"><button class="menu-button" type="button"></button></a>
         <h1 class="header-logo">
             Rese
         </h1>
-    </header>
-    
-           
-
-            <!-- Page Content -->
-            <main>
-                @yield('main')
-            </main>
-        </div>
-
-      
-
-      
+     </header>
+        <main>
+            @yield('main')
+        </main>
     </body>
 </html>

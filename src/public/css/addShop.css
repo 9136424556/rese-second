@@ -1,0 +1,17 @@
+.image-preview {
+    width: 80%; /* 固定の幅 */
+    height: 200px; /* 固定の高さ */
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    margin-left: 3%;
+}
+.image-preview img {
+    max-width: 100%; /* 親要素に収める */
+    max-height: 100%; /* 親要素に収める */
+    object-fit: cover; /* アスペクト比を保ちつつサイズを固定 */
+}

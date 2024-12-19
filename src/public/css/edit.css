@@ -1,0 +1,40 @@
+.edit{
+    width: 50%;
+    height: 100%;
+    background-color: blue;
+    align-items: center;
+    margin-left: 25%;
+}
+.edit-title-head{
+    color: white;
+    text-align: center;
+}
+.reservation-input-list{
+    margin: 10px 5px;
+}
+.select_items{
+    width: 90%;
+    height: 35px;
+}
+.detail-confirm{
+    background-color: gainsboro;
+    padding: 10px 20px;
+    width: 87%;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.submit{
+    width: 98%;
+    background-color: darkblue;
+    color: white;
+    height: 40px;
+   
+}
+
+.reserv-th{
+   
+}
+.reserv-td{
+    
+}

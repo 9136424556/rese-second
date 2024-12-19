@@ -1,0 +1,12 @@
+.body{
+    background-color: gainsboro;
+}
+.logout-button{
+    color: white;
+    background-color: darkgoldenrod;
+    width: 100px;
+    height: 30px;
+}
+.header-logo{
+    color: darkgoldenrod;
+}

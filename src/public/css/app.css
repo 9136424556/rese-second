@@ -1,30 +1,27 @@
+/*ページ全体の背景色*/
 .body{
     background-color: gainsboro;
 }
 
 .header-page{
-    width: 100%;
     display: flex;
 }
 .header-logo{
     color: blue;
     font-weight: bold;
     font-size: 40px;
+    width: 50%;
 }
 .header-list{
     display: flex;
-    margin-top: 10px;
-    margin-left: auto;
-    border: 2px solid black;
-    height: 50px;
+    color: white;
     background-color: white;
+    height: 40px;
+    margin-top: 20px;
+    width: 50%;
+   
 }
-.headerlink{
-    padding: 0px 40px ;
-    padding-bottom: 30px;
-    margin-right: 0%;
-    
-}
+
 .menu-button{
     position: relative;
 	display: flex;
@@ -102,9 +99,8 @@
    
 }
 .input-form{
-  padding: 10px;
- 
   display: flex;
+  margin-top: 5%;
 }
 .user-icon{
     color: #000;
@@ -143,62 +139,29 @@
 }
 .mail-icon{
     color: #000;
-    position: absolute;
-    margin-left: 8px;
-    margin-top: 4px;
-    width: 18px;
-    height: 10px;
-    border-radius: 1px;
-    border: solid 1px currentColor;
-    position: absolute;
-    left: 0%;
+    background-color: white;
   }
   .mail-icon:before {
     content: '';
-    position: absolute;
+    background-image: url('../storage/image/icon_email.png');
     left: 7px;
     top: -4px;
-    width: 1px;
-    height: 10px;
-    background-color: currentColor;
-    -webkit-transform-origin: bottom;
-            transform-origin: bottom;
-    -webkit-transform: rotate(-54deg);
-            transform: rotate(-54deg);
-  }
-  .mail-icon:after {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: -4px;
-    width: 1px;
-    height: 10px;
-    background-color: currentColor;
-    -webkit-transform-origin: bottom;
-            transform-origin: bottom;
-    -webkit-transform: rotate(54deg);
-            transform: rotate(54deg);
+    width: 2rem;
+    height: 2rem;
   }
 
 
-.email{
-    width: 250px;
+.input-form-item{
+    width: 90%;
     height: 40px;
     margin-left: auto;
     border: none;
-    outline: none;
+   font-size: large;
     border-bottom: 1px solid black;
 }
 .password-icon{
     color: #000;
-  position: absolute;
-  margin-left: 3px;
-  margin-top: 10px;
-  width: 13px;
-  height: 6px;
-  border-radius: 1px;
-  border: solid 1px currentColor;
-  background-color: currentColor;
+    background-color: white;
 }
 .password-icon:before{
     content: '';
@@ -283,92 +246,9 @@
 
 
 
- /*detail.blade*/
-.detail-shop-class{
-    display: flex;
-  max-width: 100%;
-    
-}
-.detail-shop-introduction{
-    width: 45%;
-    margin-left: 5%;
-}
-.detail-place-category{
-    display: flex;
-}
-.shop-tag-detail{
-    padding: 0 5px;
-}
-.shop-introduction{
-   width: 100%;
-}
 
 
-.detail-form{
-    background-color: blue;
-    width: 45%;
-    height: 670px;
-    margin: 0 0 0 auto;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 5%;
-   margin-right: 5%;
-   position: relative;
-   
-}
-.detail-form::before{
-    flex-shrink: 0;
-}
 
-
-.detail-header{
-    color: white;
-}
-.reservation-input-list{
-    margin: 10px 5px;
-}
-.date{
-    width: 40%;
-    height: 35px;
-}
-.detail-time{
-    width: 90%;
-    height: 35px;
-}
-.member-count{
-    width: 90%;
-    height: 35px;
-}
-.detail-confirm{
-    display: flex;
-    background-color: gainsboro;
-    padding: 10px 20px;
-    width: 87%;
-    margin-top: 10px;
-   
-}
-
-
-.reservation-shop-td{
-    padding-left: 50px;
-    
-}
-.submit-button{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-   position: absolute;
-     bottom: 0;
-    
-}
-.submit{
-     width: 98%;
-     background-color: darkblue;
-     color: white;
-     height: 40px;
-    
-}
 
 /*index.blade.php*/
 .home{
@@ -382,7 +262,7 @@
     padding: 10px 10px;
     width: 20%;
     border: 2px solid black;
-    height: 380px;
+    height: 420px;
     background-color: white;
 }
 .shop-title{
@@ -397,12 +277,37 @@
     padding: 0 5px;
 }
 
-   
+/*共通部分*/  
 .in-detail{
     color: white;
     background-color: blue;
     margin-top: auto;
+    border-radius:3px ;
 }
+.detail-and-like{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.detail-side{
+   text-align: left;
+   width: 50%;
+}
+.like-side{
+    width: 50%;
+    text-align: right;
+}
+.like-icon{
+    margin-right: 10%;
+}
+.form-error{
+    color: white;
+}
+
+
+
+
 /*menu.blade.php*/
 .square_btn {
     display: block;
@@ -432,44 +337,25 @@
   .square_btn::after {
     transform: translate(-50%,-50%) rotate(-45deg);
   }
+
+
+   /*menu.blade.php 要素*/
   .menu{
-    display: flex;
     width: 100%;
   }
   .menu-display{
     margin-left: auto; 
     margin-right: auto;
-       text-align: center;
-    font-size: larger;
-    margin-top: 8%;
-  }
-  .menu-content{
+    text-align: center;
+    display: block;
+    width: 100%;
     padding: 40px;
   }
-  /*mypage.blade.php*/
-  .mypage-reserv-form{
+  .menu-content{
+    padding: 20px;
+    font-size: 60px;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+
   
-   position: relative;
-  }
-  .detail-confirm-mypage{
-    background-color: blue;
-    width: 40%;
-    height: 300px;
-    margin: 0 0 0 auto;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 5%;
-   margin-right: 5%;
-  
-   margin-bottom: 10px;
-   
-  }
-  .reservation-th{
-    color: white;
-    padding: 12px;
-  }
-  .reservation-td{
-    padding-left: 50px;
-    color: white;
-  }

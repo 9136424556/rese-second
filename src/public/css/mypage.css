@@ -1,0 +1,71 @@
+/*mypage.blade.php*/
+.mypage-reserv-form{
+    display: flex;
+  }
+  .header{
+    display: flex;
+    justify-content: center;
+  }
+  .stripe{
+    width: 30%;
+  }
+  .login-username{
+   text-align: center;
+   margin-bottom: 48px;
+  }
+
+ .mypage-action1{
+    width: 50%;
+ }
+  .flex-mypage-1{
+    background-color: blue;
+    width: 80%;
+   
+    margin: 0 0 0 auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+   margin-right: 5%;
+   margin-bottom: 10px;
+  }
+  .reserv-items{
+    /*横並び*/
+    display: flex;
+    /*要素を均等配置*/
+    justify-content: space-between;
+    align-items: center;
+  }
+  .reserv-logo{
+    color: white;
+  }
+  .reserv-change{
+    background-color: #f7f7f7;
+    border: 1px solid black;
+    border-radius: 0.4rem;
+  }
+  .reservation-th{
+    color: white;
+    padding: 12px;
+  }
+  .reservation-td{
+    padding-left: 50px;
+    color: white;
+  }
+  .like {
+    width: 50%;
+  }
+  
+  .likes-shops{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.shop-card{
+     border: 1px solid #000;
+     width: 45%;
+     margin-bottom: 10px;
+     margin-right: 5%;
+     background-color: #f7f7f7;
+}

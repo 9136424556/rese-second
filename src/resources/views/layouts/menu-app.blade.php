@@ -8,31 +8,14 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
          <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-        
-     
-        <!-- Styles -->
-       
+
     </head>
     <body class="body">
-        
-        
-            
-
-            <!-- Page Heading -->
-           
-           
-    
-    
-           
-
             <!-- Page Content -->
             <main>
                 @yield('main')
             </main>
         </div>
 
-      
-
-      
     </body>
 </html>

@@ -1,0 +1,62 @@
+.main{
+    width: 50%;
+    margin: 1rem auto;
+    background-color: #678df4;
+    border-radius: 0.3rem;
+    text-align: center;
+    padding: 2rem;
+}
+@media screen and (max-width: 768px) {
+    .review-select {
+        width: 40%;
+    }
+}
+.review-star{
+    position: relative;
+}
+.review-star::after {
+    position: absolute;
+    top: 0.5rem;
+    right: 15rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 0.2rem solid #c7c6c6;
+    border-bottom: 0.2rem solid #c7c6c6;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+.select-stars{
+    width: 60%;
+    height: 30px;
+}
+.review-comment-field{
+    width: 80%;
+    height: 200px;
+    font-size: large;
+}
+.review-create-button{
+    margin-top: 2%;
+}
+.submit{
+    background-color: blue;
+    color: white;
+    font-size: large;
+    width: 40%;
+}
+.image-preview {
+    width: 80%; /* 固定の幅 */
+    height: 200px; /* 固定の高さ */
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    margin-left: 3%;
+}
+.image-preview img {
+    max-width: 100%; /* 親要素に収める */
+    max-height: 100%; /* 親要素に収める */
+    object-fit: cover; /* アスペクト比を保ちつつサイズを固定 */
+}

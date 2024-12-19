@@ -1,0 +1,39 @@
+.shop-photo{
+    width: 100%;
+    height: 150px;
+}
+.shop-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+/*index.blade.php*/
+.home{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.shop{
+    margin: 1rem 0.5rem;
+    width: 23%;
+    border-radius: 0.3rem;    /*枠線（丸みのある枠線）*/
+    background-color: white;
+}
+.shop-content{
+    padding: 1rem;
+}
+.shop-title{
+    
+    
+}
+.place-category{
+    display: flex;
+
+}
+.shop-tag{
+    padding: 0 5px;
+}
+.shop-content{
+    padding: 1rem;
+}
