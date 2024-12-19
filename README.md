@@ -82,3 +82,15 @@ php artisan key:generate
 ※店舗情報の上書きではなく新規店舗を追加するための機能です
 ## 記述例  
 ![スクリーンショット 2024-12-19 234244](https://github.com/user-attachments/assets/2f8f8528-bf20-4d7f-a737-346169ed8228)
+
+# 管理者ログインの方法
+1.ログイン画面で以下のメールアドレス、パスワードを入力。  
+email: coachtech@coachtech.com  
+password: coachtech  
+※ php artisan db:seed　実行時にデータベースに登録されるため、登録する必要はありません。  
+2.ログイン後にホーム画面左上にある青い四角ボタンをクリック。  
+3.一番下に「ManagementLogin」と表示されるのでクリック。  
+4.管理者ログイン用画面で以下の内容を入力してログイン。  
+email: admin@admin.com  
+password: administrator  
+役職を選択　→　管理者  
