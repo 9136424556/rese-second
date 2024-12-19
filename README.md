@@ -80,3 +80,5 @@ php artisan key:generate
 4.画像パス(jpeg、pngのみアップロード可能)  
 5.店舗概要(400文字以内)  
 ※店舗情報の上書きではなく新規店舗を追加するための機能です
+## 記述例  
+![スクリーンショット 2024-12-19 234244](https://github.com/user-attachments/assets/2f8f8528-bf20-4d7f-a737-346169ed8228)
