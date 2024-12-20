@@ -29,7 +29,7 @@ class ShopController extends Controller
     {
        $shops = Shop::find($shop_id);
        $users = Carbon::tomorrow()->format('Y-m-d');
-       $marks = Mark::orderBy('posted_on','desc')->where('shop_id', $shop_id)->get();
+       $marks = Mark::orderBy('posted_on','desc')->where('shop_id', $shop_id)->with('users')->get();
 
        $times = Time::all();
        $numbers = Number::all();

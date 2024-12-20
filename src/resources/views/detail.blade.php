@@ -6,7 +6,7 @@
 
 @section('main')
 <div class="detail-shop-class">
-    <a href="/">＜</a>
+    <button class="rebirth-button"><a href="/">＜</a></button>
    <div class="detail-shop-introduction">
       <h1>{{  $shops->shop_name }}</h1>
       @if (Str::startsWith($shops->image, 'https://'))
@@ -15,29 +15,50 @@
         <img  src= "{{ Storage::url($shops->image) }}" alt="店舗写真" width="100%" height="400px">
       @endif
         <div class="detail-place-category">
-           <p class="shop-tag-detail">{{ $shops->area->name }}</p>
+            <p class="shop-tag-detail">{{ $shops->area->name }}</p>
             <p class="shop-tag-detail">{{ $shops->genre->name }}</p>
+        </div>
+        <div class="like-push">
+            <p class="shop-introduction">{{ $shops->introduction}}</p>
+        </div>
+        <div class="review-see">
+            <a href="#review" type="button" v-if="!hasMyReview(p.reviews)">
+               <button class="all-reviews">全ての口コミ情報</button>
+            </a>
         </div>
         <!--レビューのモーダルウィンドウ表示ボタン-->
         @if(Auth::check() && !$hasReviewed)
-        <div class="review-create">
-             <a href="{{ route('review', ['shop_id' => $shops['id']] )}}">
-                口コミを投稿する
-             </a>
+          <div class="review-create">
+               <a href="{{ route('review', ['shop_id' => $shops['id']] )}}">
+                  口コミを投稿する
+               </a>
+          </div>
+        @elseif (Auth::check() && $hasReviewed)
+        <div class="myreview">
+          <div class="review-star">
+              {{ $hasReviewed['evaluate'] }}
+          </div>
+          <div class="review-comment">
+             <p>{{ $hasReviewed['review_comment']}}</p>
+          </div>
+          <div class="review-date">
+              {{ $hasReviewed['posted_on']}}
+          </div>
+           @if($hasReviewed->image)
+              <div class="review-image">
+                 <img src="{{ asset('storage/' . $hasReviewed->image) }}" alt="口コミ画像" width="200px">
+              </div>
+           @endif
+           <!--自分の書いた口コミがあれば編集ボタンを表示する-->
+           @if($hasReviewed)
+             <a href="{{route('review.edit', $hasReviewed->id) }}">口コミを編集する</a>
+             <form action="{{ route('review.destroy', $hasReviewed->id) }}" method="POST" style="display: inline;">
+             @csrf
+                  <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+             </form>
+           @endif
         </div>
         @endif
-        @if(Auth::check() && $hasReviewed)
-           <p>この店舗には既に口コミを投稿しています。</p>
-        @endif
-        <div class="review-see">
-            <a href="#review" type="button" v-if="!hasMyReview(p.reviews)">
-               口コミを見る
-            </a>
-        </div>
-       <div class="like-push">
-          <p class="shop-introduction">{{ $shops->introduction}}</p>
-       </div>
-        
    </div>
   
    
@@ -46,7 +67,7 @@
     <div class="reserv-title">
         <h2 class="detail-header">予約</h2>
     </div>
-   <div class="create-reserv">
+    <div class="create-reserv">
     <form class="reserv-input-form" action="/confirm"  method="get">
       @csrf
          <!--予約日入力-->
@@ -149,7 +170,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                   <a href="#" class="modal1-close">×</button></a>
+                   <a href="#" class="rebirth-button">×</button></a>
                 </div>
                
                
@@ -166,6 +187,9 @@
                         </div>
                         <div class="review-date">
                             {{ $mark['posted_on']}}
+                        </div>
+                        <div class="review-date">
+                            {{ $mark->users->name }}
                         </div>
                         @if($mark->image)
                         <div class="review-image">
