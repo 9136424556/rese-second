@@ -15,3 +15,19 @@
     max-height: 100%; /* 親要素に収める */
     object-fit: cover; /* アスペクト比を保ちつつサイズを固定 */
 }
+.admin-content{
+    width: 60%;
+    display: block;
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+.admin-table{
+    width: 100%;
+}
+.submit{
+    width: 8em;
+    background-color: blue;
+    color: white;
+    
+}

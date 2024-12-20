@@ -89,8 +89,8 @@
             </div>
 
             <div>
-                <p><a href="/admin/shop">店舗を追加</a></p>
-                <p><a href="/admin/list">口コミ一覧</a></p> 
+                <p><a href="/admin/shop">店舗を追加(CSVインポート)</a></p>
+                <p><a href="/admin/list">店舗・口コミ一覧</a></p> 
             </div>
         </form>
     </div>

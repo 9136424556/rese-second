@@ -19,11 +19,14 @@
          </div>
         @endif
         </div>
-        <div class="admin-header-title">
-            <h2 class="header-logo">店舗を追加</h2>
+        <div class="rebirth">
+          <button class="rebirth-button"><a href="/admin/index">＜</a></button>
         </div>
     </div>
     <div class="admin-content">
+        <div class="admin-header-title">
+            <h2 class="header-logo">店舗を追加</h2>
+        </div>
         <form action="/admin/create/shop" method="post" enctype="multipart/form-data">
             @csrf
             <table class="admin-table">

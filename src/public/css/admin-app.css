@@ -10,3 +10,16 @@
 .header-logo{
     color: darkgoldenrod;
 }
+.rebirth{
+    margin-top: 5%; 
+}
+.rebirth-button{
+    width: 3%;
+    height: 60px;
+    border: 1px solid #000 ;
+}
+@media screen and (max-width: 768px) {
+    .rebirth-button{
+        width: 10%;
+    }
+}
