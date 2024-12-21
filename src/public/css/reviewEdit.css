@@ -1,0 +1,107 @@
+.main{
+    width: 100%;
+    border-left: 1px solid black;
+    border-radius: 0.3rem;
+    text-align: center;
+    padding: 2rem;
+    max-width: 100%;
+}
+@media screen and (max-width: 768px) {
+    .main {
+        width: 80%;
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: none;
+        border-top: 1px solid black;
+    }
+}
+
+.review-star::after {
+    top: 0.5rem;
+    right: 15rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 0.2rem solid #c7c6c6;
+    border-bottom: 0.2rem solid #c7c6c6;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+.select-stars{
+    width: 80%;
+    height: 30px;
+}
+.review-comment-field{
+    width: 80%;
+    height: 200px;
+    font-size: large;
+}
+.review-create-button{
+    width: 100%;
+    margin-top: 2%;
+    text-align: center;
+}
+.submit{
+    background-color: white;
+    color: black;
+    font-size: large;
+    width: 40%;
+    border-radius: 0.6em;
+}
+@media screen and (max-width:768px) {
+    .submit{
+        width: 60%;
+    }
+}
+.image-preview {
+    width: 80%; /* 固定の幅 */
+    height: 200px; /* 固定の高さ */
+    border: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    position: relative;
+    margin-left: 10%;
+}
+.image-preview img {
+    max-width: 100%; /* 親要素に収める */
+    max-height: 100%; /* 親要素に収める */
+    object-fit: cover; /* アスペクト比を保ちつつサイズを固定 */
+}
+
+.placeholder-text {
+    color: #aaa;
+    font-size: 14px;
+    pointer-events: none; /* クリックを無効化 */
+    position: absolute;
+}
+
+.input-image{
+    width: 80%;
+}
+.shop{
+    margin: 1rem 4rem;
+    width: 60%;
+    height: 100%;
+    border-radius: 0.3rem;    /*枠線（丸みのある枠線）*/
+    background-color: white;
+}
+@media screen and (max-width:768px) {
+    .shop{
+        width: 100%;
+    }
+}
+.shop-photo{
+    width: 100%;
+    height: 300px;
+}
+.shop-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+}

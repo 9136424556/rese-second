@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/review.css') }}">
+<link rel="stylesheet" href="{{ asset('css/reviewEdit.css') }}">
 @endsection
 
 @section('main')
 <!--店舗詳細ページに戻る-->
-<div class="back-button">
-    <a href="{{ route('detail', $review->shop_id) }}" class="btn btn-secondary">＜</a>
-</div>
+
+    <button class="rebirth-button"><a href="{{ route('detail', $review->shop_id) }}" class="btn btn-secondary">＜</a></button>
+
 <div class="main">
 @if(session('success'))
     <div class="alert alert-success">
@@ -54,15 +54,16 @@
 
         <div class="review-image">
           <label for="image">画像をアップロード (JPEG, PNGのみ)</label>
-          <input type="file" name="image" id="image" accept="image/jpeg, image/png">
             @error('image')
               {{ $message }}
             @enderror
             &emsp;
             <!-- 画像プレビュー用 -->
            
-            <div class="image-preview">
-                <img id="preview" src="{{ asset('storage/' . $review->image) }}" alt="投稿した画像" width="200px">
+            <div class="image-preview" id="image-preview">
+                <input class="input-image" type="file" name="image" id="image" accept="image/jpeg, image/png" hidden>
+                <img id="preview" src="" alt="プレビュー画像" style="display: none;">
+                <p class="placeholder-text">クリックして写真を追加</p>
             </div>
             
         </div>
@@ -76,6 +77,7 @@
     document.getElementById('image').addEventListener('change', function(event) {
         const file = event.target.files[0];  // 選択したファイル
         const preview = document.getElementById('preview');   // プレビュー用imgタグ
+        const placeholderText = document.querySelector('.placeholder-text'); // プレースホルダーテキスト要素
 
         // ファイルが存在し、画像ファイルである場合
         if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
@@ -83,6 +85,10 @@
             reader.onload = function(e) {
                 preview.src = e.target.result; // imgタグのsrcに画像データをセット
                 preview.style.display = 'block'; // プレビュー画像を表示
+                // プレースホルダーテキストを非表示
+                if (placeholderText) {
+                    placeholderText.style.display = 'none';
+                }
             };
             reader.readAsDataURL(file); // ファイルをDataURLとして読み込む
         } else {
@@ -91,7 +97,16 @@
             preview.src = ''; // プレビューをクリア
             preview.style.display = 'none';
             event.target.value = ''; // inputの選択をリセット
+            // プレースホルダーテキストを再表示
+            if (placeholderText) {
+                placeholderText.style.display = 'block';
+            }
         }
+    });
+
+    document.getElementById('image-preview').addEventListener('click', function () {
+        // input要素をクリックしたことにする
+        document.getElementById('image').click();
     });
 </script>
 @endsection

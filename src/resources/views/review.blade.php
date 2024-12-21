@@ -51,7 +51,7 @@
                 <option value="{{ $star['star'] }}">{{ $star['star'] }}</option>
                 @endforeach
             </select>
-            <div class="form-error">
+            <div class="form-error2">
                 @error('evaluate')
                 {{ $message }}
                 @enderror
@@ -62,7 +62,7 @@
         <div class="review-comment">
             <p><label for="text">口コミを投稿(400字まで入力可)</label></p>
             <textarea class="review-comment-field" name="review_comment" id="text" placeholder="カジュアルな夜のお出掛けにおすすめのスポット"></textarea>
-            <div class="form-error">
+            <div class="form-error2">
                 @error('review_comment')
                 {{ $message }}
                 @enderror
@@ -74,7 +74,7 @@
           <label for="image">画像の追加 (JPEG, PNGのみ)</label>
           
             @error('image')
-              <div class="form-error">{{ $message }}</div>
+              <div class="form-error2">{{ $message }}</div>
             @enderror
             &emsp;
             <!-- 画像プレビュー用 -->
@@ -85,12 +85,11 @@
             </div>
         </div>
 
-       
-    </form>
-  </div>
+   </div>
    <div class="review-create-button">
        <button class="submit"  type="submit" onclick="return confirm('この内容で投稿しますか？')">口コミを投稿</button>
    </div>
+   </form>
 </div>
 
 <script>
