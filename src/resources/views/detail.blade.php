@@ -170,7 +170,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                   <a href="#" class="rebirth-button">×</button></a>
+                   <button class="rebirth-button2"><a href="#" >×</a></button>
                 </div>
                
                
@@ -179,31 +179,25 @@
                         <p class="review-none">このお店のレビューはまだありません</p>
                     @else
                         @foreach($marks as $mark)
-                        <div class="review-star">
-                            {{ $mark['evaluate'] }}
-                        </div>
-                        <div class="review-comment">
+                        <div class="one-review">
+                          <div class="review-star">
+                              {{ $mark['evaluate'] }}
+                          </div>
+                          <div class="review-comment">
                             <p>{{ $mark['review_comment']}}</p>
-                        </div>
-                        <div class="review-date">
+                          </div>
+                          <div class="review-date">
                             {{ $mark['posted_on']}}
-                        </div>
-                        <div class="review-date">
+                          </div>
+                          <div class="review-date">
                             {{ $mark->users->name }}
-                        </div>
-                        @if($mark->image)
-                        <div class="review-image">
+                          </div>
+                          @if($mark->image)
+                          <div class="review-image">
                             <img src="{{ asset('storage/' . $mark->image) }}" alt="口コミ画像" width="200px">
+                          </div>
+                          @endif
                         </div>
-                        @endif
-                        <!--自分の書いた口コミがあれば編集ボタンを表示する-->
-                         @if($hasReviewed)
-                          <a href="{{route('review.edit', $hasReviewed->id) }}">口コミを編集する</a>
-                          <form action="{{ route('review.destroy', $hasReviewed->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
-                          </form>
-                         @endif
                         @endforeach
                     @endif
               </div> 
