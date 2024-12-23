@@ -59,10 +59,23 @@
     </main>
 
 <script>
-//HTMLドキュメントの読み込みが完了し、DOMが構築された時点でこの関数が実行
+//HTMLドキュメントの読み込みが完了し、DOMが構築された(画面が読み込まれた)時点でこの関数が実行
 document.addEventListener('DOMContentLoaded', () => {
-    const shopList = document.getElementById('shop-list');
-    const sortOrder = document.getElementById('sort-order');
+    // starToNumeric 関数を定義
+    const starToNumeric = (stars) => {
+        switch (stars) {
+            case '★★★★★': return 5;
+            case '★★★★☆': return 4;
+            case '★★★☆☆': return 3;
+            case '★★☆☆☆': return 2;
+            case '★☆☆☆☆': return 1;
+            default: return 0;
+        }
+    };
+
+    //変数の初期化
+    const shopList = document.getElementById('shop-list');   //（HTMLのid="shop-list"）
+    const sortOrder = document.getElementById('sort-order');  //（HTMLのid="sort-order"）
 
     // 画像を読み込む関数   画像の非同期読み込みを行い、ロードが完了したらHTMLの<img>要素に画像を設定する。
     async function loadImage(src, imgElement) {
@@ -87,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // APIから店舗データを取得する関数
     const fetchShops = async (sort) => {
         try {    //fetch()で /shops エンドポイントにGETリクエストを送信。sortパラメータをURLに追加してソート順を指定
-            const response = await fetch(`/shops?sort=${sort}`, {
+            const response = await fetch(`/shops?sort=${encodeURIComponent(sort)}`, {
                 method: 'GET',
                 headers: { 'Content-type': 'application/json' },
             });

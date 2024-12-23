@@ -92,10 +92,28 @@ class ShopController extends Controller
              'shops.image',
              'areas.name as area_name', 
              'genres.name as genre_name',
-           DB::raw('COALESCE(AVG(marks.evaluate), 0) as average_rating'), // 評価の平均値
+             //色付きの星の数だけ数値に変換
+             DB::raw("
+               COALESCE(AVG(
+                  CASE 
+                     WHEN marks.evaluate = '★★★★★' THEN 5
+                     WHEN marks.evaluate = '★★★★☆' THEN 4
+                     WHEN marks.evaluate = '★★★☆☆' THEN 3
+                     WHEN marks.evaluate = '★★☆☆☆' THEN 2
+                     WHEN marks.evaluate = '★☆☆☆☆' THEN 1
+                     ELSE 0
+                 END
+              ), 0) as average_rating
+           "),// 評価の平均値
            DB::raw('COUNT(marks.id) as rating_count')  // 評価数
        )
-       ->groupBy('shops.id', 'shops.shop_name');
+       ->groupBy(
+        'shops.id',
+                'shops.shop_name',
+                'shops.image', 
+                'areas.name', 
+                'genres.name'
+       );
 
        // ソート条件に応じて並び替え
        if ($sort === 'high') {
