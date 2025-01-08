@@ -27,14 +27,26 @@
             </a>
         </div>
         <!--レビューのモーダルウィンドウ表示ボタン-->
+         <!--ログイン済みで口コミを投稿していない場合に表示-->
         @if(Auth::check() && !$hasReviewed)
           <div class="review-create">
-               <a href="{{ route('review', ['shop_id' => $shops['id']] )}}">
+               <a class="link-review" href="{{ route('review', ['shop_id' => $shops['id']] )}}">
                   口コミを投稿する
                </a>
           </div>
+          <!--口コミ投稿済みの場合-->
         @elseif (Auth::check() && $hasReviewed)
         <div class="myreview">
+          <!--自分の書いた口コミがあれば編集ボタンを表示する-->
+           @if($hasReviewed)
+           <div class="edit-w-button">
+             <a class="link-review" href="{{route('review.edit', $hasReviewed->id) }}">口コミを編集する</a>
+             <form action="{{ route('review.destroy', $hasReviewed->id) }}" method="POST" style="display: inline;">
+             @csrf
+                  <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+             </form>
+           </div>
+           @endif
           <div class="review-star">
               {{ $hasReviewed['evaluate'] }}
           </div>
@@ -49,14 +61,7 @@
                  <img src="{{ asset('storage/' . $hasReviewed->image) }}" alt="口コミ画像" width="200px">
               </div>
            @endif
-           <!--自分の書いた口コミがあれば編集ボタンを表示する-->
-           @if($hasReviewed)
-             <a href="{{route('review.edit', $hasReviewed->id) }}">口コミを編集する</a>
-             <form action="{{ route('review.destroy', $hasReviewed->id) }}" method="POST" style="display: inline;">
-             @csrf
-                  <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
-             </form>
-           @endif
+           
         </div>
         @endif
    </div>

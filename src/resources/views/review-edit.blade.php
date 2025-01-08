@@ -1,20 +1,45 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/reviewEdit.css') }}">
+<link rel="stylesheet" href="{{ asset('css/review.css') }}">
 @endsection
 
 @section('main')
-<!--店舗詳細ページに戻る-->
+<div class="reviewUserForm">
+    <div class="reviewed-shop">
+     <h1 class="how-shop">今回のご利用はいかがでしたか?</h1>
+     <div class="shop">
+         <div class="shop-photo">
+           @if (Str::startsWith($shops->image, 'https://'))
+             <img class="shop-img" src="{{ $shops->image }}" alt="店舗写真"  >
+           @else
+             <img class="shop-img" src="{{ Storage::url($shops->image) }}" alt="店舗写真">
+           @endif
+         </div>
+         <div class="shop-content">
+            <div>
+              <h1 class="shop-title">{{ $shops->shop_name }}</h1>
+            </div>
+        
+            <div class="place-category">
+               <p class="shop-tag">#{{ $shops->area->name }}</p>
+               <p class="shop-tag">#{{ $shops->genre->name }}</p>
+            </div>
 
-    <button class="rebirth-button"><a href="{{ route('detail', $review->shop_id) }}" class="btn btn-secondary">＜</a></button>
-
+            <div class="detail-side">
+               <a href="{!! '/detail/' . $shops->id !!}">
+                  <button class="in-detail"  type="button">詳しく見る</button>
+               </a>
+            </div>  
+         </div>
+     </div>
+  </div>
 <div class="main">
-@if(session('success'))
+    @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
+    @endif
     <form action="{{ route('review.update', $review->id) }}" method="POST"  enctype="multipart/form-data">
         @csrf
         <div class="shop-name">
@@ -24,14 +49,13 @@
 
         <!-- 星の数セレクト -->
         <div class="review-star">
-            <select class="select-stars" name="evaluate" >
-                <option value="" hidden>星の数を選んでください</option>
-                @foreach($stars as $star)
-                <option value="{{ $star['star'] }}" {{ $review->evaluate == $star['star'] ? 'selected' : '' }}>
-                   {{ $star['star'] }}
-                </option>
-                @endforeach
-            </select>
+            <span class="star" data-value="★☆☆☆☆">★</span>
+            <span class="star" data-value="★★☆☆☆">★</span>
+            <span class="star" data-value="★★★☆☆">★</span>
+            <span class="star" data-value="★★★★☆">★</span>
+            <span class="star" data-value="★★★★★">★</span>
+            <input type="hidden" name="evaluate" id="evaluate" value="{{ $review->evaluate }}">
+            
             <div class="form-error">
                 @error('evaluate')
                 {{ $message }}
@@ -41,6 +65,7 @@
         </div>
 
         <div class="review-comment">
+            <p><label for="text">口コミを投稿(400字まで入力可)</label></p>
             <textarea class="review-comment-field" name="review_comment" placeholder="コメントを記入してください">
                 {{ old('review_comment', $review->review_comment) }}
             </textarea>
@@ -62,17 +87,19 @@
            
             <div class="image-preview" id="image-preview">
                 <input class="input-image" type="file" name="image" id="image" accept="image/jpeg, image/png" hidden>
-                <img id="preview" src="" alt="プレビュー画像" style="display: none;">
+                <img id="preview" src="{{ asset('storage/' . $review->image) }}" alt="プレビュー画像" >
                 <p class="placeholder-text">クリックして写真を追加</p>
             </div>
             
         </div>
-
+        </div>
         <div class="review-create-button">
-            <button class="submit"  type="submit">口コミを投稿</button>
+            <button class="submit"  type="submit">口コミを更新</button>
         </div>
     </form>
+ 
 </div>
+    
 <script>
     document.getElementById('image').addEventListener('change', function(event) {
         const file = event.target.files[0];  // 選択したファイル
@@ -107,6 +134,42 @@
     document.getElementById('image-preview').addEventListener('click', function () {
         // input要素をクリックしたことにする
         document.getElementById('image').click();
+    });
+    
+     //星の数を選択して評価
+     document.addEventListener("DOMContentLoaded", () => {
+       const stars = document.querySelectorAll(".star");
+       const evaluateInput = document.getElementById("evaluate");
+
+       // 初期状態でevaluateの値を反映
+       const currentEvaluate = evaluateInput.value; // ★★☆☆☆など
+       if (currentEvaluate) {
+        // 対応する星の数に基づいて選択状態を設定
+        stars.forEach((star, index) => {
+            if (star.getAttribute("data-value") === currentEvaluate) {
+                // 対応する星を選択状態にする
+                for (let i = 0; i <= index; i++) {
+                    stars[i].classList.add("selected");
+                }
+            }
+        });
+       }
+
+        // 星をクリックしたときのイベントリスナー
+       stars.forEach((star,index) => {
+        star.addEventListener("click", () => {
+            // すべての星の選択状態をリセット
+            stars.forEach(s => s.classList.remove("selected"));
+            // 選択された星まで選択状態を追加
+            star.classList.add("selected");
+            const starValue = star.getAttribute("data-value");
+            evaluateInput.value =starValue;
+            // 選択された星より前の星も選択状態にする
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add("selected");
+            }
+        });
+       });
     });
 </script>
 @endsection

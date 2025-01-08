@@ -90,7 +90,7 @@
 
             <div>
                 <p><a href="/admin/shop">店舗を追加(CSVインポート)</a></p>
-                <p><a href="/admin/list">店舗・口コミ一覧</a></p> 
+                <p><a href="/admin/list">店舗・口コミ一覧(口コミ削除はこちら)</a></p> 
             </div>
         </form>
     </div>

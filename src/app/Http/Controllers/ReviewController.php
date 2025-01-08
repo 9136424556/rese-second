@@ -48,8 +48,9 @@ class ReviewController extends Controller
     {
        $stars = Star::all();
        $review = Mark::findOrFail($id);// 指定IDの口コミを取得
+       $shops = Shop::find($id);
 
-       return view('review-edit', compact('review','stars'));
+       return view('review-edit', compact('review','stars','shops'));
     }
 
     public function update(ReviewRequest $request, $id)
@@ -62,20 +63,23 @@ class ReviewController extends Controller
        // 画像がアップロードされた場合
        if ($request->hasFile('image')) {
            // 古い画像を削除
-           if ($review->image) {
+           if ($review->image && Storage::disk('public/')->exists($review->image)) {
               Storage::disk('public')->delete($review->image);
            }
 
            // 新しい画像を保存
            $imagePath = $request->file('image')->store('reviews', 'public');
            $reviewData['image'] = $imagePath;
+       } else {
+          // 画像がアップロードされなかった場合、既存の画像パスを保持
+          $reviewData['image'] = $review->image;
        }
 
-    // データを更新
-    $review->update($reviewData); // データを更新
+      // データを更新
+      $review->update($reviewData); // データを更新
 
-    return redirect()->route('review.edit', $id)->with('success', '口コミを更新しました！');
-}
+      return redirect()->route('review.edit', $id)->with('success', '口コミを更新しました！');
+    }
     public function markDelete($id)
     {
         $review = Mark::findOrFail($id);

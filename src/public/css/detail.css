@@ -233,3 +233,10 @@
 .review-image{
     margin-bottom: 6%;
 }
+.edit-w-button{
+    display: flex;
+    float: right;
+}
+.link-review{
+    color: #000;
+}

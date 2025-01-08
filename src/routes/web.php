@@ -97,8 +97,10 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //管理者操作枠                     （↓config/auth.php に'admin'を設定することで起動させる）
-Route::prefix('admin')->middleware('verified:admin')->group(function() {
+Route::prefix('admin')->middleware('admin')->group(function() {
     Route::get('/index', [AdminController::class, 'adminindex'])->name('adminIndex');
+    //管理者権限ログアウト
+    Route::post('/logout', [AdminController::class, 'logout']);
     Route::post('/create', [AdminController::class, 'admincreate']);
     //インポート処理実行画面
     Route::get('/shop', [AdminController::class, 'addShop'])->name('admin.addShop');

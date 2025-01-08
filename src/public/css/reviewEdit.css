@@ -27,10 +27,24 @@
     transform: rotate(45deg);
     pointer-events: none;
 }
-.select-stars{
-    width: 80%;
-    height: 30px;
+.review-star{
+    display: flex;
+    align-items: center;
+    
 }
+
+.star{
+    width: 100%;
+    height: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc;
+}
+.star.selected,
+.star:hover {
+    color: blue;
+}
+
 .review-comment-field{
     width: 80%;
     height: 200px;

@@ -12,6 +12,7 @@ use App\Models\Time;
 use App\Models\Number;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
 {
@@ -117,16 +118,37 @@ class ShopController extends Controller
 
        // ソート条件に応じて並び替え
        if ($sort === 'high') {
-          $query->orderByDesc('average_rating');
+         $query->reorder(); // デフォルトの並び順をリセット
+         $query->orderByRaw("
+          CASE 
+             WHEN rating_count = 0 THEN 1
+             ELSE 0
+           END ASC
+          ")->orderBy('average_rating', 'DESC')
+            ->orderBy('shops.id', 'ASC');
        } elseif ($sort === 'low') {
-          $query->orderBy('average_rating');
+          $query->reorder(); // デフォルトの並び順をリセット
+        // 評価がないショップを最後尾にする条件を追加
+          $query->orderByRaw("
+            CASE 
+              WHEN COUNT(marks.id) = 0 THEN 1 
+              ELSE 0 
+            END ASC
+          ")->orderBy('average_rating', 'ASC')->orderBy('shops.id', 'ASC'); // 通常の評価順 -> shopのid順
        } elseif ($sort === 'random') {
           $query->inRandomOrder();
        }
 
         // データ取得
-        $shops = $query->get();
-
+        try {
+            // クエリ実行部分
+            Log::info('Query Debug:', ['sql' => $query->toSql(), 'bindings' => $query->getBindings()]);
+            $shops = $query->get();
+        } catch (\Exception $e) {
+            // エラーをログに記録
+            Log::error('Error fetching shops: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
         return response()->json($shops);
     }
 }

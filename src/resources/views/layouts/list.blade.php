@@ -21,16 +21,16 @@
             Rese
         </h1>
       
-        <div class="">
-            <!--ソートセレクトボックス(並び順を変更)-->
-            <select name="sort" id="sort-order">
-                <option selected disabled>並び替え</option>
-                <option value="random" id="sort-random">ランダム</option>
-                <option value="high" id="sort-high">評価が高い順</option>
-                <option value="low" id="sort-low">評価が低い順</option>
-                
-            </select>
-         <form class="header-list" action="/search" method="GET">
+        
+        <!--ソートセレクトボックス(並び順を変更)-->
+        <select name="sort" id="sort-order" class="select-sort">
+            <option selected disabled>並び替え:未選択</option>
+            <option value="random" id="sort-random">ランダム</option>
+            <option value="high" id="sort-high">評価が高い順</option>
+            <option value="low" id="sort-low">評価が低い順</option>
+        </select>
+
+        <form class="header-list" action="/search" method="GET">
             @csrf
             
             <!--　エリア検索 -->
@@ -50,8 +50,7 @@
             <input type="text" name="keyword" placeholder="検索" value="{{ request('keyword') }}">
             <input class="search-button" type="submit" value="検索">
             <input class="reset-button" type="submit" name="reset" value="リセット">
-         </form>
-        </div>
+        </form>
     </header>
 
     <main class="main">
@@ -104,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'GET',
                 headers: { 'Content-type': 'application/json' },
             });
+            if (!response.ok) {
+              throw new Error(`Error fetching shops: ${response.statusText}`);
+            }
             //response.json() でレスポンスデータをJSON形式に変換
             const responseData = await response.json();
 
@@ -130,10 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const shopElement = document.createElement('div');
             shopElement.className = 'shop';
             // 画像パスを条件で切り替え
-            const imagePath = shop.image.startsWith('https://') 
+            const imagePath = shop.image.startsWith('https://') || shop.image.startsWith('https://') 
               ? shop.image 
-              : shop.image.startsWith('/') // ローカルの絶対パスの場合の処理を追加
-              ? shop.image
               : `/storage/${shop.image}`;
 
             shopElement.innerHTML = `

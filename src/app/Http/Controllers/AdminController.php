@@ -17,6 +17,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Imports\ShopsImport;
+use Maatwebsite\Excel\Facades\Excel;
 class AdminController extends Controller
 {
 
@@ -40,6 +42,14 @@ class AdminController extends Controller
         }
 
         return back()->withErrors(['auth' => ['認証に失敗しました']] );
+    }
+    //管理者権限からログアウト
+    public function logout()
+    {
+        // adminガードでログアウト処理を実行
+        Auth::guard('admin')->logout();
+
+        return redirect('/multi/index')->with('success', 'ログアウトしました');
     }
     //管理者メイン画面
     public function adminindex()

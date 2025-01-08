@@ -26,11 +26,11 @@
                <p class="shop-tag">#{{ $shops->genre->name }}</p>
             </div>
 
-            <div class="detail-side">
+            
                <a href="{!! '/detail/' . $shops->id !!}">
                   <button class="in-detail"  type="button">詳しく見る</button>
                </a>
-            </div>  
+           
          </div>
      </div>
   </div>
@@ -45,12 +45,12 @@
 
         <!-- 星の数セレクト -->
         <div class="review-star">
-            <select class="select-stars" name="evaluate" >
-                <option value="" hidden>星の数を選んでください</option>
-                @foreach($stars as $star)
-                <option value="{{ $star['star'] }}">{{ $star['star'] }}</option>
-                @endforeach
-            </select>
+            <span class="star" data-value="★☆☆☆☆">★</span>
+            <span class="star" data-value="★★☆☆☆">★</span>
+            <span class="star" data-value="★★★☆☆">★</span>
+            <span class="star" data-value="★★★★☆">★</span>
+            <span class="star" data-value="★★★★★">★</span>
+            <input type="hidden" name="evaluate" id="evaluate" value="">
             <div class="form-error2">
                 @error('evaluate')
                 {{ $message }}
@@ -126,6 +126,27 @@
     document.getElementById('image-preview').addEventListener('click', function () {
         // input要素をクリックしたことにする
         document.getElementById('image').click();
+    });
+
+    //星の数を選択して評価
+    document.addEventListener("DOMContentLoaded", () => {
+       const stars = document.querySelectorAll(".star");
+       const evaluateInput = document.getElementById("evaluate");
+
+       stars.forEach((star,index) => {
+        star.addEventListener("click", () => {
+            // すべての星の選択状態をリセット
+            stars.forEach(s => s.classList.remove("selected"));
+            // 選択された星まで選択状態を追加
+            star.classList.add("selected");
+            const starValue = star.getAttribute("data-value");
+            evaluateInput.value =starValue;
+            // 選択された星より前の星も選択状態にする
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add("selected");
+            }
+        });
+       });
     });
 </script>
 @endsection

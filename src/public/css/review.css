@@ -50,25 +50,29 @@
         border-top: 1px solid black;
     }
 }
-
-.review-star::after {
-    top: 0.5rem;
-    right: 15rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-right: 0.2rem solid #c7c6c6;
-    border-bottom: 0.2rem solid #c7c6c6;
-    transform: rotate(45deg);
-    pointer-events: none;
+.review-star{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin-left: 6%;
 }
-.select-stars{
-    width: 80%;
+
+.star{
+    width: 40%;
     height: 30px;
+    font-size: 40px;
+    cursor: pointer;
+    color: #ccc;
+}
+.star.selected,
+.star:hover {
+    color: blue;
 }
 .review-comment-field{
     width: 80%;
     height: 200px;
     font-size: large;
+    background-color:  gainsboro;
 }
 .review-create-button{
     width: 100%;
@@ -119,23 +123,33 @@
     width: 80%;
 }
 .shop{
-    margin: 1rem 4rem;
-    width: 60%;
-    height: 100%;
+    margin: 1rem 7rem;
+    width: 50%;
+    height: 21em;
     border-radius: 0.3rem;    /*枠線（丸みのある枠線）*/
     background-color: white;
 }
 @media screen and (max-width:768px) {
     .shop{
         width: 100%;
+        margin: 1rem 4rem;
+        height: 100%;
     }
 }
 .shop-photo{
     width: 100%;
-    height: 300px;
+    height: 40%;
+}
+@media screen and (max-width:768px) {
+    .shop-photo{
+        height: 60%
+    }
 }
 .shop-img{
     width: 100%;
     height: 100%;
     border-radius: 0.3rem 0.3rem 0 0;
+}
+.in-detail{
+
 }

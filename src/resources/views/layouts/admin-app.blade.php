@@ -15,9 +15,13 @@
         <h1 class="header-logo">
             ReseManagement
         </h1>
-        @if(Auth::check())
+        @if(!Auth::guard('admin')->check())
+        <a href="/">ホーム画面に戻る</a>
+        @endif
+        
+        @if(Auth::guard('admin')->check())
         <div class="header-logout">
-            <form action="/logout" method="POST">
+            <form action="/admin/logout" method="POST">
             @csrf
                 <button class="logout-button" type="submit">Logout</button>
             </form>
