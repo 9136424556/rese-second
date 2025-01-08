@@ -28,8 +28,7 @@ services:
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    volumes:
-       mysql-data:
+    
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         environment:
