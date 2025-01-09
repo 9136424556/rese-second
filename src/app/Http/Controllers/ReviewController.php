@@ -46,11 +46,13 @@ class ReviewController extends Controller
 
     public function edit($id)
     {
-       $stars = Star::all();
-       $review = Mark::findOrFail($id);// 指定IDの口コミを取得
-       $shops = Shop::find($id);
+       $review = Mark::with('shop')->findOrFail($id);// 指定IDの口コミを取得
+       $user = auth()->user(); // 現在ログインしているユーザーを取得
+       $hasReviewed = Mark::where('user_id', $user->id)
+                          ->where('shop_id', $review->shop_id)
+                          ->first();
 
-       return view('review-edit', compact('review','stars','shops'));
+       return view('review-edit', compact('review','hasReviewed'));
     }
 
     public function update(ReviewRequest $request, $id)

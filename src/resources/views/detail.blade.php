@@ -40,15 +40,20 @@
           <!--自分の書いた口コミがあれば編集ボタンを表示する-->
            @if($hasReviewed)
            <div class="edit-w-button">
-             <a class="link-review" href="{{route('review.edit', $hasReviewed->id) }}">口コミを編集する</a>
+             <p class="link-p"><a class="link-review" href="{{route('review.edit', $hasReviewed->id) }}">口コミを編集する</a></p>
              <form action="{{ route('review.destroy', $hasReviewed->id) }}" method="POST" style="display: inline;">
              @csrf
-                  <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+                  <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">口コミを削除</button>
              </form>
            </div>
            @endif
           <div class="review-star">
-              {{ $hasReviewed['evaluate'] }}
+            <span class="star" data-value="★☆☆☆☆">★</span>
+            <span class="star" data-value="★★☆☆☆">★</span>
+            <span class="star" data-value="★★★☆☆">★</span>
+            <span class="star" data-value="★★★★☆">★</span>
+            <span class="star" data-value="★★★★★">★</span>
+            <input type="hidden" name="evaluate" id="evaluate" value="{{ $hasReviewed->evaluate }}">
           </div>
           <div class="review-comment">
              <p>{{ $hasReviewed['review_comment']}}</p>
@@ -212,4 +217,25 @@
     </div>
  
 </div>
+<script>
+  //星の数を選択して評価
+  document.addEventListener("DOMContentLoaded", () => {
+       const stars = document.querySelectorAll(".star");
+       const evaluateInput = document.getElementById("evaluate");
+
+       // 初期状態でevaluateの値を反映
+       const currentEvaluate = evaluateInput.value; // ★★☆☆☆など
+       if (currentEvaluate) {
+        // 対応する星の数に基づいて選択状態を設定
+        stars.forEach((star, index) => {
+            if (star.getAttribute("data-value") === currentEvaluate) {
+                // 対応する星を選択状態にする
+                for (let i = 0; i <= index; i++) {
+                    stars[i].classList.add("selected");
+                }
+            }
+        });
+       }
+    });
+</script>
 @endsection

@@ -10,24 +10,24 @@
      <h1 class="how-shop">今回のご利用はいかがでしたか?</h1>
      <div class="shop">
          <div class="shop-photo">
-           @if (Str::startsWith($shops->image, 'https://'))
-             <img class="shop-img" src="{{ $shops->image }}" alt="店舗写真"  >
+           @if (Str::startsWith($review->shop->image, 'https://'))
+             <img class="shop-img" src="{{ $review->shop->image }}" alt="店舗写真"  >
            @else
-             <img class="shop-img" src="{{ Storage::url($shops->image) }}" alt="店舗写真">
+             <img class="shop-img" src="{{ Storage::url($review->shop->image) }}" alt="店舗写真">
            @endif
          </div>
          <div class="shop-content">
             <div>
-              <h1 class="shop-title">{{ $shops->shop_name }}</h1>
+              <h1 class="shop-title">{{ $review->shop->shop_name }}</h1>
             </div>
         
             <div class="place-category">
-               <p class="shop-tag">#{{ $shops->area->name }}</p>
-               <p class="shop-tag">#{{ $shops->genre->name }}</p>
+               <p class="shop-tag">#{{ $review->shop->area->name }}</p>
+               <p class="shop-tag">#{{ $review->shop->genre->name }}</p>
             </div>
 
             <div class="detail-side">
-               <a href="{!! '/detail/' . $shops->id !!}">
+               <a href="{!! '/detail/' . $review->shop->id !!}">
                   <button class="in-detail"  type="button">詳しく見る</button>
                </a>
             </div>  
