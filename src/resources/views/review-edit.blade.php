@@ -66,9 +66,7 @@
 
         <div class="review-comment">
             <p><label for="text">口コミを投稿(400字まで入力可)</label></p>
-            <textarea class="review-comment-field" name="review_comment" placeholder="コメントを記入してください">
-                {{ old('review_comment', $review->review_comment) }}
-            </textarea>
+            <textarea id="text" class="review-comment-field" name="review_comment" placeholder="コメントを記入してください">{{ old('review_comment', $review->review_comment) }}</textarea>
             <div class="form-error">
                 @error('review_comment')
                 {{ $message }}

@@ -69,11 +69,20 @@
 .star:hover {
     color: blue;
 }
+.review-comment{
+    width: 100%;
+    text-align: left;
+    margin-left: 10%;
+    
+}
 .review-comment-field{
     width: 80%;
     height: 200px;
-    font-size: large;
+    margin: 0; /* 余白をリセット */
+    padding: 10px; /* 適切な余白を設定 */
+    display: block; /* ブロック要素として表示 */
     background-color:  gainsboro;
+    text-align: left;
 }
 .review-create-button{
     width: 100%;
