@@ -65,7 +65,7 @@ class ReviewController extends Controller
        // 画像がアップロードされた場合
        if ($request->hasFile('image')) {
            // 古い画像を削除
-           if ($review->image && Storage::disk('public/')->exists($review->image)) {
+           if ($review->image && Storage::disk('public')->exists($review->image)) {
               Storage::disk('public')->delete($review->image);
            }
 
