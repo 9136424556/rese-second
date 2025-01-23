@@ -141,9 +141,10 @@
 }
 @media screen and (max-width:768px) {
     .shop{
-        width: 100%;
-        margin: 1rem 4rem;
-        height: 100%;
+        width: 80%;
+        margin:0 4rem;
+        height: 90%;
+        margin-left: 22%;
     }
 }
 .shop-photo{
@@ -160,6 +161,28 @@
     height: 100%;
     border-radius: 0.3rem 0.3rem 0 0;
 }
+.shop-title{
+    margin-left: 4%;
+}
+.place-category{
+    margin-left: 4%;
+}
 .in-detail{
-
+    margin-left: 4%;
+    border-radius: 0.4em;
+}
+@media screen and (max-width:768px) {
+   .shop-title{
+      margin-left: 4%;
+   }
+   .place-category{
+      margin-left: 4%;
+   }
+   .in-detail{
+      margin-left: 4%;
+   }
+}
+.add-image{
+    text-align: left;
+    margin-left: 10%;
 }

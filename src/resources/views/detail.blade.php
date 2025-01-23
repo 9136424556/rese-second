@@ -12,7 +12,7 @@
       @if (Str::startsWith($shops->image, 'https://'))
         <img src="{{ $shops->image }}" alt="店舗写真" width="100%" height="400px">
       @else
-        <img  src= "{{ Storage::url($shops->image) }}" alt="店舗写真" width="100%" height="400px">
+        <img src= "{{ Storage::url($shops->image) }}" alt="店舗写真" width="100%" height="400px">
       @endif
         <div class="detail-place-category">
             <p class="shop-tag-detail">{{ $shops->area->name }}</p>

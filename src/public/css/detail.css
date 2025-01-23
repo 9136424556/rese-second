@@ -260,25 +260,24 @@
 @media screen and (max-width: 768px) {
     .edit-w-button{
        margin-left: 0%;
-      
     }
 }
 .link-p{
     margin-left: 1em;
     width: 24%;
-    
+     white-space: nowrap; /* テキストを折り返さないように設定 */
 }
 @media screen and (max-width: 768px) {
     .link-p{
        width: 100%;
-       margin-left: 0%;
+       margin-left: 20%;
        
     }
 }
 .link-review{
     color: #000;
     width: 14px;
-    white-space: nowrap; /* テキストを折り返さないように設定 */
+   
 }
 .star{
     width: 40%;

@@ -65,7 +65,7 @@
         </div>
 
         <div class="review-comment">
-            <p><label for="text">口コミを投稿(400字まで入力可)</label></p>
+            <h3><label for="text">口コミを投稿(400字まで入力可)</label></h3>
             <textarea id="text" class="review-comment-field" name="review_comment" placeholder="コメントを記入してください">{{ old('review_comment', $review->review_comment) }}</textarea>
             <div class="form-error">
                 @error('review_comment')
@@ -76,7 +76,7 @@
         </div>
 
         <div class="review-image">
-          <label for="image">画像をアップロード (JPEG, PNGのみ)</label>
+          <h3 class="add-image"><label for="image">画像をアップロード (JPEG, PNGのみ)</label></h3>
             @error('image')
               {{ $message }}
             @enderror
