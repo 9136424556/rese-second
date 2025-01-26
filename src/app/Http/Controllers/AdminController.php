@@ -92,6 +92,7 @@ class AdminController extends Controller
         return view('admin.addShop',compact('areas','genres'));
     }
 
+    //インポート機能
     public function importCsv(CsvFileRequest $request)
     {
         // アップロードされたCSVファイルを取得
